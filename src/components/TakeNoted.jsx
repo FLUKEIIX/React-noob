@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Heading from "./Heading";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
+import Heading from "./Heading.jsx";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
+import Note from "./Note.jsx";
 import Card from "./Card.jsx";
 import Entry from "./Entry.jsx";
 import animals from "../database/data.js";

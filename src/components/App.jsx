@@ -8,54 +8,27 @@ import Entry from "./Entry.jsx";
 import animals from "../database/data.js";
 import cars from "../database/practice.js";
 
-// console.log(cars);
-
-var [honda, tesla] = cars;
-
-const {
-  coloursByPopularity: [hondaTopColour],
-  speedStats: { topSpeed: hondaTopSpeed },
-} = honda;
-
-const {
-  coloursByPopularity: [teslaTopColour],
-  speedStats: { topSpeed: teslaTopSpeed },
-} = tesla;
-
-// console.log(coloursByPopularity);
-
-// console.log(honda.model);
-
 function App() {
-  const time = new Date().toLocaleTimeString("it-IT");
-  const [clock, setTime] = useState(time);
+  const [name, setName] = useState("");
+  const [headText, setHeadText] = useState("");
 
-  function getTime() {
-    const newTime = new Date().toLocaleTimeString("it-IT");
-    setTime(newTime);
-    // console.log("getTime");
+  function handleChange(e) {
+    setName(e.target.value);
   }
 
-  // setInterval(getTime, 1000);
+  function handleClick() {
+    setHeadText(name);
+  }
 
   return (
-    <div>
-      <table>
-        <tr>
-          <th>Brand</th>
-          <th>Top Speed</th>
-        </tr>
-        <tr>
-          <td>{tesla.model}</td>
-          <td>{teslaTopSpeed}</td>
-          <td>{teslaTopColour}</td>
-        </tr>
-        <tr>
-          <td>{honda.model}</td>
-          <td>{hondaTopSpeed}</td>
-          <td>{hondaTopColour}</td>
-        </tr>
-      </table>
+    <div className="container">
+      <h1>Hello {headText}</h1>
+      <input
+        type="text"
+        placeholder="What's your name?"
+        onChange={handleChange}
+      />
+      <button onClick={handleClick}>Submit</button>
     </div>
   );
 }
