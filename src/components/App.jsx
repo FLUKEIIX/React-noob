@@ -9,26 +9,40 @@ import animals from "../database/data.js";
 import cars from "../database/practice.js";
 
 function App() {
-  const [name, setName] = useState("");
-  const [headText, setHeadText] = useState("");
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+  });
 
   function handleChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleClick() {
-    setHeadText(name);
+    const { name, value } = e.target;
+    setContact({ ...contact, [name]: value });
   }
 
   return (
     <div className="container">
-      <h1>Hello {headText}</h1>
+      <h1>Hello {contact.fName + " " + contact.lName}</h1>
+      <p>{contact.email}</p>
       <input
-        type="text"
-        placeholder="What's your name?"
         onChange={handleChange}
+        name="fName"
+        type="text"
+        placeholder="What's your Firstname?"
       />
-      <button onClick={handleClick}>Submit</button>
+      <input
+        onChange={handleChange}
+        name="lName"
+        type="text"
+        placeholder="What's your Lastname?"
+      />
+      <input
+        onChange={handleChange}
+        name="email"
+        type="email"
+        placeholder="What's your Email?"
+      />
+      <button>Submit</button>
     </div>
   );
 }
