@@ -7,42 +7,43 @@ import Card from "./Card.jsx";
 import Entry from "./Entry.jsx";
 import animals from "../database/data.js";
 import cars from "../database/practice.js";
-
+import ToDoItem from "./ToDoItem.jsx";
 function App() {
-  const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
-    email: "",
-  });
+  const [input, setInput] = useState("");
+  const [items, setItems] = useState([]);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setContact({ ...contact, [name]: value });
+    const newVal = e.target.value;
+    setInput(newVal);
+  }
+
+  function addItem() {
+    setItems([...items, input]);
+    setInput("");
+  }
+
+  function deleteItem(id) {
+    setItems();
   }
 
   return (
     <div className="container">
-      <h1>Hello {contact.fName + " " + contact.lName}</h1>
-      <p>{contact.email}</p>
-      <input
-        onChange={handleChange}
-        name="fName"
-        type="text"
-        placeholder="What's your Firstname?"
-      />
-      <input
-        onChange={handleChange}
-        name="lName"
-        type="text"
-        placeholder="What's your Lastname?"
-      />
-      <input
-        onChange={handleChange}
-        name="email"
-        type="email"
-        placeholder="What's your Email?"
-      />
-      <button>Submit</button>
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input type="text" onChange={handleChange} value={input} />
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {items.map((todoItem, i) => (
+            <ToDoItem key={i} id={i} text={todoItem} onChecked={deleteItem} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
